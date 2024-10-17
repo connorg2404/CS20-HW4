@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+    <head>
+        <title> Tic Tac Toe - Part 3 </title>
+    </head>
+    <style>
+        div#board {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 1px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 400px;
+        } div.square {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            border: solid 5px #000000;
+            font-size: 30px;
+        } div.square:hover {
+            background-color: #b2b2b2;
+        } div#turn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 250px;
+            height: 50px;
+            margin: 0 auto;
+            font-size: 30px;
+            background-color: #bababa;
+        } div#reset {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 300px;
+            height: 50px;
+            margin: 0 auto;
+            font-size: 24px;
+            background-color: #90e974;
+        } div#reset:hover {
+            background-color: #55c832;
+        }
+    </style>
+    <body>
+        <h1 style="text-align: center; font-size: 50px"> Tic Tac Toe - Part 3 </h1>
+        <div id="turn"></div>
+        <div id="board">
+            <script language="javascript">
+                // Code from ttt2, unchanged.
+                const NUM_SQUARES = 9;
+                for (let i = 0; i < NUM_SQUARES; i++) {
+                    id = "sq" + i;
+                    document.write("<div class='square' id='" + id + "'></div>");
+                }
+            </script>
+        </div>
+        <div id="reset">
+            Start Game
+            <script>
+                let clearBoard = document.getElementById("reset");
+                clearBoard.addEventListener("click", function() {
+                    for (let i = 0; i < NUM_SQUARES; i++) {
+                        let tile = document.getElementById("sq" + i);
+                        tile.innerHTML = "";
+                    }
+                    runGame();
+                });
+            </script>
+        </div>
+        </div>
+        <script language="javascript">
+            // Run the Tic Tac Toe game from scratch
+            runGame();
+            function runGame() {
+                // Math.round() would either round down to 0 or up to 1.
+                if (Math.round(Math.random()) == 0 ? turn = "X" : turn = "O") {}
+
+                // There are at most 9 turns in a game.
+                for (let i = 0; i < NUM_SQUARES; i++) {
+                    turnIndicator = document.getElementById("turn");
+                    turnIndicator.innerHTML = turn + "'s Turn";
+                    let tile = document.getElementById("sq" + i);
+
+                    // Function to execute when a tile is clicked.
+                    tile.addEventListener("click", function() {
+                        if (this.innerHTML != "") {
+                        } else {
+                            this.innerHTML = turn;
+                            alert("Move placed in square " + i);
+                            if (turn == "X" ? turn = "O" : turn = "X");
+                            turnIndicator.innerHTML = turn + "'s Turn";
+                        }
+                    });
+                };
+            }
+        </script>
+    </body>
+</html>

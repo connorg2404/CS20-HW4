@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+    <head>
+        <title> Tic Tac Toe - Part 4 </title>
+        <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous">
+        </script>
+    </head>
+    <style>
+        div#board {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 1px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 400px;
+        } div.square {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            border: solid 5px #000000;
+            font-size: 30px;
+        } div.square:hover {
+            background-color: #b2b2b2;
+        } div#turn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 250px;
+            height: 50px;
+            margin: 0 auto;
+            font-size: 30px;
+            background-color: #bababa;
+        } div#gameover {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 300px;
+            height: 50px;
+            margin: 0 auto;
+            font-size: 24px;
+            background-color: #90e974;
+        } div#gameover:hover {
+            background-color: #55c832;
+        }
+    </style>
+    <body>
+        <h1 style="text-align: center; font-size: 50px"> Tic Tac Toe - Part 4 </h1>
+        <div id="turn"></div>
+        <div id="board">
+            <script language="javascript">
+                // Code from ttt2, unchanged.
+                const NUM_SQUARES = 9;
+                for (let i = 0; i < NUM_SQUARES; i++) {
+                    id = "sq" + i;
+                    document.write("<div class='square' id='" + id + "'></div>");
+                }
+            </script>
+        </div>
+        <div id="gameover">
+            <script>
+                let clearBoard = document.getElementById("gameover");
+                clearBoard.addEventListener("click", function() {
+                    for (let i = 0; i < NUM_SQUARES; i++) {
+                        let tile = document.getElementById("sq" + i);
+                        tile.innerHTML = "";
+                    }
+                    clearBoard.innerHTML = "";
+                    runGame();
+                })
+            </script>
+        </div>
+        </div>
+        <script language="javascript">
+            // Run the Tic Tac Toe game from scratch
+            runGame();
+            function runGame() {
+                moves = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
+                winConditions = ["---", "---", "---", "---", "---", "---", "---", "---"];
+                // Math.round() would either round down to 0 or up to 1.
+                if (Math.round(Math.random()) == 0 ? turn = "X" : turn = "O") {}
+
+                // There are at most 9 turns in a game.
+                for (let i = 0; i < NUM_SQUARES; i++) {
+                    document.getElementById("turn").innerHTML = turn + "'s Turn";
+                    tile = document.getElementById("sq" + i);
+                    over = false;
+                    // Function to execute when a tile is clicked.
+                    tile.addEventListener("click", function() {
+                        if (over == true || this.innerHTML != "") {
+                        } else {
+                            this.innerHTML = turn;
+                            alert("Move placed in square " + i);
+                            updateMoves(moves);
+                            updateWinConditions(winConditions, moves);
+                            result = checkWin(winConditions, moves);
+                            if (result === "X") {
+                                document.getElementById("gameover").innerHTML = "X wins! Click here to restart.";
+                                over = true;
+                            } else if (result === "O") {
+                                document.getElementById("gameover").innerHTML = "O wins! Click here to restart."
+                                over = true;
+                            } else if (result == "tie") {
+                                document.getElementById("gameover").innerHTML = "Tie. Click here to restart."
+                                over = true;
+                            } else {
+                                if (turn == "X" ? turn = "O" : turn = "X");
+                                document.getElementById("turn").innerHTML = turn + "'s Turn";
+                            }
+                        }
+                    });
+                }
+            }
+            // Function to update the moves array after each turn.
+            function updateMoves(moves) {
+                let index = 0;
+                moves.forEach(function() {
+                    if (document.getElementById("sq" + index).innerHTML != "") {
+                        moves[index] = document.getElementById("sq" + index).innerHTML;
+                    } else {
+                        moves[index] = "-";
+                    }
+                    index++;
+                })
+            }
+            // Function to update the winConditions array after each turn.
+            function updateWinConditions(winConditions, moves) {
+                winConditions[0] = moves[0] + moves[1] + moves[2];
+                winConditions[1] = moves[3] + moves[4] + moves[5];
+                winConditions[2] = moves[6] + moves[7] + moves[8];
+                winConditions[3] = moves[0] + moves[3] + moves[6];
+                winConditions[4] = moves[1] + moves[4] + moves[7];
+                winConditions[5] = moves[2] + moves[5] + moves[8];
+                winConditions[6] = moves[0] + moves[4] + moves[8];
+                winConditions[7] = moves[2] + moves[4] + moves[6];
+            }
+            // Function to check if there is a winning condition
+            function checkWin(winConditions, moves) {
+                for(let item of winConditions) {
+                    if (item === "XXX") {
+                        return "X";
+                    } else if (item === "OOO") {
+                        return "O";
+                    }
+                }
+                for(let move of moves) {
+                    if (move === "-") {
+                        return "no";
+                    }
+                }
+                return "tie";
+            }
+        </script>
+    </body>
+</html>

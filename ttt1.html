@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <title> Tic Tac Toe - Part 1 </title>
+        <style>
+            div.board {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                height: 400px;
+            }
+            div.square {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 100px;
+                height: 100px;
+                margin: 5px;
+                border: solid 5px #000000;
+                font-size: 30px;
+            }
+            div.square:hover {
+                background-color: #b2b2b2;
+            }
+        </style>
+    </head>
+<body>
+    <div class="board">
+        <div class="row">
+            <div class="square">
+                <strong> X </strong>
+            </div>
+            <div class="square"></div>
+            <div class="square"></div>
+        </div>
+        <div class="row">
+            <div class="square"></div>
+            <div class="square">
+                <strong> O </strong>
+            </div>
+            <div class="square"></div>
+        </div>
+        <div class="row">
+            <div class="square"> </div>
+            <div class="square">
+                <strong> X </strong>
+            </div>
+            <div class="square"></div>
+        </div>
+    </div>
+</body>
+</html>
